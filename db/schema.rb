@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20160813202558) do
 
-  create_table "accounting_adjustments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "accounting_adjustments", force: :cascade do |t|
     t.integer "adjustable_id", null: false
     t.string "adjustable_type", null: false
     t.string "notes"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["adjustable_id"], name: "index_accounting_adjustments_on_adjustable_id"
   end
 
-  create_table "accounts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "accounts", force: :cascade do |t|
     t.string "name", null: false
     t.string "account_type", null: false
     t.decimal "monthly_charge", precision: 8, scale: 2, default: "0.0", null: false
@@ -31,13 +31,13 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.datetime "updated_at"
   end
 
-  create_table "address_types", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "address_types", force: :cascade do |t|
     t.string "name", limit: 64, null: false
     t.string "description"
     t.index ["name"], name: "index_address_types_on_name"
   end
 
-  create_table "addresses", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "addresses", force: :cascade do |t|
     t.integer "address_type_id"
     t.string "first_name"
     t.string "last_name"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["state_id"], name: "index_addresses_on_state_id"
   end
 
-  create_table "batches", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "batches", force: :cascade do |t|
     t.string "batchable_type"
     t.integer "batchable_id"
     t.string "name"
@@ -72,11 +72,11 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["batchable_type"], name: "index_batches_on_batchable_type"
   end
 
-  create_table "brands", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "brands", force: :cascade do |t|
     t.string "name"
   end
 
-  create_table "cart_items", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "cart_items", force: :cascade do |t|
     t.integer "user_id"
     t.integer "cart_id"
     t.integer "variant_id", null: false
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["variant_id"], name: "index_cart_items_on_variant_id"
   end
 
-  create_table "carts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "carts", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
-  create_table "comments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "comments", force: :cascade do |t|
     t.text "note"
     t.string "commentable_type"
     t.integer "commentable_id"
@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "countries", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "countries", force: :cascade do |t|
     t.string "name"
     t.string "abbreviation", limit: 5
     t.integer "shipping_zone_id"
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["shipping_zone_id", "active"], name: "index_countries_on_shipping_zone_id_and_active"
   end
 
-  create_table "coupons", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "coupons", force: :cascade do |t|
     t.string "type", null: false
     t.string "code", null: false
     t.decimal "amount", precision: 8, scale: 2, default: "0.0"
@@ -140,13 +140,13 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["expires_at"], name: "index_coupons_on_expires_at"
   end
 
-  create_table "deal_types", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "deal_types", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "deals", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "deals", force: :cascade do |t|
     t.integer "buy_quantity", null: false
     t.integer "get_percentage"
     t.integer "deal_type_id", null: false
@@ -160,7 +160,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["product_type_id"], name: "index_deals_on_product_type_id"
   end
 
-  create_table "image_groups", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "image_groups", force: :cascade do |t|
     t.string "name", null: false
     t.integer "product_id", null: false
     t.datetime "created_at"
@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["product_id"], name: "index_image_groups_on_product_id"
   end
 
-  create_table "images", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "images", force: :cascade do |t|
     t.integer "imageable_id"
     t.string "imageable_type"
     t.integer "image_height"
@@ -186,13 +186,13 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["position"], name: "index_images_on_position"
   end
 
-  create_table "inventories", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "inventories", force: :cascade do |t|
     t.integer "count_on_hand", default: 0
     t.integer "count_pending_to_customer", default: 0
     t.integer "count_pending_from_supplier", default: 0
   end
 
-  create_table "invoices", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "invoices", force: :cascade do |t|
     t.integer "order_id", null: false
     t.decimal "amount", precision: 8, scale: 2, null: false
     t.string "invoice_type", default: "Purchase", null: false
@@ -204,16 +204,16 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["order_id"], name: "index_invoices_on_order_id"
   end
 
-  create_table "item_types", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "item_types", force: :cascade do |t|
     t.string "name"
   end
 
-  create_table "newsletters", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "newsletters", force: :cascade do |t|
     t.string "name", null: false
     t.boolean "autosubscribe", null: false
   end
 
-  create_table "notifications", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "notifications", force: :cascade do |t|
     t.integer "user_id"
     t.string "type", null: false
     t.integer "notifiable_id", null: false
@@ -226,7 +226,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
-  create_table "order_items", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "order_items", force: :cascade do |t|
     t.decimal "price", precision: 8, scale: 2
     t.decimal "total", precision: 8, scale: 2
     t.integer "order_id", null: false
@@ -244,7 +244,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["variant_id"], name: "index_order_items_on_variant_id"
   end
 
-  create_table "orders", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "orders", force: :cascade do |t|
     t.string "number"
     t.string "ip_address"
     t.string "email"
@@ -269,7 +269,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "payment_profiles", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "payment_profiles", force: :cascade do |t|
     t.integer "user_id"
     t.integer "address_id"
     t.string "payment_cim_id"
@@ -288,7 +288,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["user_id"], name: "index_payment_profiles_on_user_id"
   end
 
-  create_table "payments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "payments", force: :cascade do |t|
     t.integer "invoice_id"
     t.string "confirmation_id"
     t.integer "amount"
@@ -304,11 +304,11 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["invoice_id"], name: "index_payments_on_invoice_id"
   end
 
-  create_table "phone_types", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "phone_types", force: :cascade do |t|
     t.string "name", null: false
   end
 
-  create_table "phones", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "phones", force: :cascade do |t|
     t.integer "phone_type_id"
     t.string "number", null: false
     t.string "phoneable_type", null: false
@@ -321,7 +321,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["phoneable_type"], name: "index_phones_on_phoneable_type"
   end
 
-  create_table "product_properties", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "product_properties", force: :cascade do |t|
     t.integer "product_id", null: false
     t.integer "property_id", null: false
     t.integer "position"
@@ -330,7 +330,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["property_id"], name: "index_product_properties_on_property_id"
   end
 
-  create_table "product_types", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "product_types", force: :cascade do |t|
     t.string "name", null: false
     t.integer "parent_id"
     t.boolean "active", default: true
@@ -341,7 +341,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["rgt"], name: "index_product_types_on_rgt"
   end
 
-  create_table "products", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "products", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
     t.text "product_keywords"
@@ -367,25 +367,25 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["shipping_category_id"], name: "index_products_on_shipping_category_id"
   end
 
-  create_table "properties", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "properties", force: :cascade do |t|
     t.string "identifing_name", null: false
     t.string "display_name"
     t.boolean "active", default: true
   end
 
-  create_table "prototype_properties", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "prototype_properties", force: :cascade do |t|
     t.integer "prototype_id", null: false
     t.integer "property_id", null: false
     t.index ["property_id"], name: "index_prototype_properties_on_property_id"
     t.index ["prototype_id"], name: "index_prototype_properties_on_prototype_id"
   end
 
-  create_table "prototypes", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "prototypes", force: :cascade do |t|
     t.string "name", null: false
     t.boolean "active", default: true, null: false
   end
 
-  create_table "purchase_order_variants", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "purchase_order_variants", force: :cascade do |t|
     t.integer "purchase_order_id", null: false
     t.integer "variant_id", null: false
     t.integer "quantity", null: false
@@ -397,7 +397,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["variant_id"], name: "index_purchase_order_variants_on_variant_id"
   end
 
-  create_table "purchase_orders", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "purchase_orders", force: :cascade do |t|
     t.integer "supplier_id", null: false
     t.string "invoice_number"
     t.string "tracking_number"
@@ -412,14 +412,14 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["tracking_number"], name: "index_purchase_orders_on_tracking_number"
   end
 
-  create_table "referral_bonuses", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "referral_bonuses", force: :cascade do |t|
     t.integer "amount", null: false
     t.string "name", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "referral_programs", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "referral_programs", force: :cascade do |t|
     t.boolean "active", null: false
     t.text "description"
     t.string "name", null: false
@@ -429,11 +429,11 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["referral_bonus_id"], name: "index_referral_programs_on_referral_bonus_id"
   end
 
-  create_table "referral_types", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "referral_types", force: :cascade do |t|
     t.string "name", null: false
   end
 
-  create_table "referrals", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "referrals", force: :cascade do |t|
     t.boolean "applied", default: false
     t.datetime "clicked_at"
     t.string "email", null: false
@@ -447,14 +447,14 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.datetime "sent_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["email"], name: "index_referrals_on_email", length: { email: 6 }
+    t.index ["email"], name: "index_referrals_on_email"
     t.index ["referral_program_id"], name: "index_referrals_on_referral_program_id"
     t.index ["referral_type_id"], name: "index_referrals_on_referral_type_id"
     t.index ["referral_user_id"], name: "index_referrals_on_referral_user_id"
     t.index ["referring_user_id"], name: "index_referrals_on_referring_user_id"
   end
 
-  create_table "return_authorizations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "return_authorizations", force: :cascade do |t|
     t.string "number"
     t.decimal "amount", precision: 8, scale: 2, null: false
     t.decimal "restocking_fee", precision: 8, scale: 2, default: "0.0"
@@ -471,12 +471,12 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["user_id"], name: "index_return_authorizations_on_user_id"
   end
 
-  create_table "return_conditions", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "return_conditions", force: :cascade do |t|
     t.string "label"
     t.string "description"
   end
 
-  create_table "return_items", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "return_items", force: :cascade do |t|
     t.integer "return_authorization_id", null: false
     t.integer "order_item_id", null: false
     t.integer "return_condition_id"
@@ -492,17 +492,17 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["updated_by"], name: "index_return_items_on_updated_by"
   end
 
-  create_table "return_reasons", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "return_reasons", force: :cascade do |t|
     t.string "label"
     t.string "description"
   end
 
-  create_table "roles", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "roles", force: :cascade do |t|
     t.string "name", limit: 30, null: false
     t.index ["name"], name: "index_roles_on_name"
   end
 
-  create_table "sales", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "sales", force: :cascade do |t|
     t.integer "product_id"
     t.decimal "percent_off", precision: 8, scale: 2, default: "0.0"
     t.datetime "starts_at"
@@ -512,7 +512,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["product_id"], name: "index_sales_on_product_id"
   end
 
-  create_table "shipments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "shipments", force: :cascade do |t|
     t.integer "order_id"
     t.integer "shipping_method_id", null: false
     t.integer "address_id", null: false
@@ -529,11 +529,11 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["shipping_method_id"], name: "index_shipments_on_shipping_method_id"
   end
 
-  create_table "shipping_categories", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "shipping_categories", force: :cascade do |t|
     t.string "name", null: false
   end
 
-  create_table "shipping_methods", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "shipping_methods", force: :cascade do |t|
     t.string "name", null: false
     t.integer "shipping_zone_id", null: false
     t.datetime "created_at"
@@ -541,11 +541,11 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["shipping_zone_id"], name: "index_shipping_methods_on_shipping_zone_id"
   end
 
-  create_table "shipping_rate_types", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "shipping_rate_types", force: :cascade do |t|
     t.string "name", null: false
   end
 
-  create_table "shipping_rates", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "shipping_rates", force: :cascade do |t|
     t.integer "shipping_method_id", null: false
     t.decimal "rate", precision: 8, scale: 2, default: "0.0", null: false
     t.integer "shipping_rate_type_id", null: false
@@ -560,11 +560,11 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["shipping_rate_type_id"], name: "index_shipping_rates_on_shipping_rate_type_id"
   end
 
-  create_table "shipping_zones", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "shipping_zones", force: :cascade do |t|
     t.string "name", null: false
   end
 
-  create_table "slugs", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "slugs", force: :cascade do |t|
     t.string "name"
     t.integer "sluggable_id"
     t.integer "sequence", default: 1, null: false
@@ -575,7 +575,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["sluggable_id"], name: "index_slugs_on_sluggable_id"
   end
 
-  create_table "states", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "states", force: :cascade do |t|
     t.string "name", null: false
     t.string "abbreviation", limit: 5, null: false
     t.string "described_as"
@@ -586,7 +586,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["name"], name: "index_states_on_name"
   end
 
-  create_table "store_credits", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "store_credits", force: :cascade do |t|
     t.decimal "amount", precision: 8, scale: 2, default: "0.0"
     t.integer "user_id", null: false
     t.datetime "created_at"
@@ -594,14 +594,14 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["user_id"], name: "index_store_credits_on_user_id"
   end
 
-  create_table "suppliers", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "suppliers", force: :cascade do |t|
     t.string "name", null: false
     t.string "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "tax_rates", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "tax_rates", force: :cascade do |t|
     t.decimal "percentage", precision: 8, scale: 2, default: "0.0", null: false
     t.integer "state_id"
     t.integer "country_id"
@@ -611,17 +611,17 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["state_id"], name: "index_tax_rates_on_state_id"
   end
 
-  create_table "tax_statuses", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "tax_statuses", force: :cascade do |t|
     t.string "name", null: false
   end
 
-  create_table "transaction_accounts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "transaction_accounts", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "transaction_ledgers", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "transaction_ledgers", force: :cascade do |t|
     t.string "accountable_type"
     t.integer "accountable_id"
     t.integer "transaction_id"
@@ -637,7 +637,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["transaction_id"], name: "index_transaction_ledgers_on_transaction_id"
   end
 
-  create_table "transactions", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "transactions", force: :cascade do |t|
     t.string "type"
     t.integer "batch_id"
     t.datetime "created_at"
@@ -645,14 +645,14 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["batch_id"], name: "index_transactions_on_batch_id"
   end
 
-  create_table "user_roles", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "user_roles", force: :cascade do |t|
     t.integer "role_id", null: false
     t.integer "user_id", null: false
     t.index ["role_id"], name: "index_user_roles_on_role_id"
     t.index ["user_id"], name: "index_user_roles_on_user_id"
   end
 
-  create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "email"
@@ -675,7 +675,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["persistence_token"], name: "index_users_on_persistence_token", unique: true
   end
 
-  create_table "users_newsletters", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users_newsletters", force: :cascade do |t|
     t.integer "user_id"
     t.integer "newsletter_id"
     t.datetime "updated_at", null: false
@@ -683,7 +683,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["user_id"], name: "index_users_newsletters_on_user_id"
   end
 
-  create_table "variant_properties", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "variant_properties", force: :cascade do |t|
     t.integer "variant_id", null: false
     t.integer "property_id", null: false
     t.string "description", null: false
@@ -692,7 +692,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["variant_id"], name: "index_variant_properties_on_variant_id"
   end
 
-  create_table "variant_suppliers", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "variant_suppliers", force: :cascade do |t|
     t.integer "variant_id", null: false
     t.integer "supplier_id", null: false
     t.decimal "cost", precision: 8, scale: 2, default: "0.0", null: false
@@ -706,7 +706,7 @@ ActiveRecord::Schema.define(version: 20160813202558) do
     t.index ["variant_id"], name: "index_variant_suppliers_on_variant_id"
   end
 
-  create_table "variants", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "variants", force: :cascade do |t|
     t.integer "product_id", null: false
     t.string "sku", null: false
     t.string "name"

@@ -3,50 +3,56 @@
   <%= stylesheet_link_tag 'products_page.css' %>
 <% end %>
 
-<div id='featured_item' class='nine columns'>
+<style type="text/css">
 
-  <div id='interesting_items' >
-    <ul id='interesting_items-list'>
-      <% @products.each_with_index do |product, i| %>
-        <li id='interesting_product_<%= i %>' class=''>
-          <div class='interesting_items-image'>
+.productshowsect{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
 
-            <%= link_to product_path(product), title: product.name do %>
+  .holdtheproduct{
+    padding: 10px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.21);
+-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.21);
+box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.21);
+border-radius: 10px;
+-webkit-transition: box-shadow 0.4s ease-in-out 0s;
+-moz-transition: box-shadow 0.4s ease-in-out 0s;
+-o-transition: box-shadow 0.4s ease-in-out 0s;
+-ms-transition: box-shadow 0.4s ease-in-out 0s;
+transition: box-shadow 0.4s ease-in-out 0s; 
+  }
 
-              <div class='no-hover-show'>
-                <% if product.hero_variant.try(:low_stock?) %>
-                  <%= image_tag("ribbons/#{product.stock_status}.png",
-                                 width: 63, height: 62,
-                                 class: 'upper_left_overlay' ) %>
-                <% end %>
-                <div class='hover-details unfade'>
-                  <p class='bottom-hover-details'>
-                    <%= number_to_currency product.price_range.first %>
-                    <% if product.price_range? %>
-                        to
-                        <%= number_to_currency product.price_range.last %>
-                    <% end %>
-                  </p>
-                </div>
-              </div>
-              <%= link_to image_tag(product.featured_image(:medium)), product_path(product), title: product.name, class:  'clearfix' %>
-            <% end %>
+  .holdtheproduct:hover{
+    -webkit-box-shadow: 0px 0px 23px 3px rgba(0,0,0,0.21);
+-moz-box-shadow: 0px 0px 23px 3px rgba(0,0,0,0.21);
+box-shadow: 0px 0px 23px 3px rgba(0,0,0,0.21);
+  }
+</style>
+    <section class="productshowsect">
+       <div class="container">
+        <div class="row">
+          <% @products.each_with_index do |product, i| %>
+          <div class="col-lg-3 col-sm-12">
+            <div class="holdtheproduct">
+              <%= link_to image_tag(product.featured_image(:medium)), product_path(product), title: product.name, class:  'img-fluid' %>
+              
+              <p style="text-align: center; font-size: 11px; font-weight: 900;" class="">
+              <%= link_to '<span><i class="fa fa-eye" style="color: #dc3545;" aria-hidden="true"></i> VIEW PRODUCT</span>'.html_safe, product_path(product), :style => "color: black; font-family: 'Asap Condensed', sans-serif;", :class => "btn" %>
+              </p>
+            
+              <hr>
+              <p style="text-align: center;">
+              <span style="color: #black; font-size: 15px; font-weight: 900; font-family: 'Asap Condensed', sans-serif;"><%= product.name %></span><br>
+              <span style="color: #9a9c9e; font-size: 12px; font-weight: 300; font-family: 'Asap Condensed', sans-serif;"> 
+                &#162; <%= product.price_range.first %></span>
+              </p>
+            </div>
           </div>
+           <% end %>
+           <%= will_paginate @products %>
+        </div>
+       </div>
+     </section>
 
-          <div class='interesting_items-details'><%= product.name %><br/>
 
-          </div>
-        </li>
-      <% end %>
-    </ul>
-    <div class='clearfix'></div>
-  </div>
-  <%= will_paginate @products %>
-
-</div>
-
-<div id='right_side_panel' class='three columns last'>
-  <div id='right_side_panel_promo' class=''>
-    Join our web site and get additional Savings....  <%= image_tag "logos/#{Image::MAIN_LOGO}.png", :alt => 'hadean image.'%>
-  </div>
-</div>

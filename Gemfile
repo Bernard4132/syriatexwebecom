@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.4.0"
+ruby "2.4.2"
 
 ## Bundle rails:
 gem 'rails', '~> 5.1.3'
@@ -60,6 +60,7 @@ gem 'aasm',            '~> 4.12.2'
 gem 'will_paginate',   '~> 3.1.6'
 # gem 'zurb-foundation', '~> 4.3.2'
 gem 'foundation-rails', '6.2.3.0'
+gem 'dalli' 
 
 group :production do
   # gem 'mysql2', '~> 0.4.4'
@@ -83,7 +84,7 @@ group :development do
 end
 group :test, :development do
   gem 'byebug'
-  gem 'mysql2',   '~> 0.4.8'
+  gem 'sqlite3'
   gem 'capybara', '~> 2.7.1'
   gem 'launchy'
   gem 'database_cleaner', "~> 1.6.1"

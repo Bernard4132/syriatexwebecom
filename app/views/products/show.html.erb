@@ -1,28 +1,49 @@
-
 <% content_for :head do -%>
   <%= stylesheet_link_tag 'product_page.css' %>
 <% end %>
-<div class=''>
-<div id='product' class=''>
 
-  <div class=' clearfix'>
-    <% if @product.active_variants.empty? %>
-      <div id='no-variant-available' class=' four large-4 last'>
-        Sorry this product is not currently available.
-      </div>
-    <% else %>
+<style type="text/css">
 
-      <div id='left_product_wrapper' class='columns five large-5'>
+  .orbit-container .orbit-next:hover {
+         border-color: transparent transparent transparent #ffffff; }
 
-          <% if @product.images.size >= 1 %>
+  #share-buttons{
+  position: relative; 
+  top: 80px;
+}
+
+#share-buttons img {
+width: 28px;
+padding: 2px;
+border: 0;
+box-shadow: 0;
+display: inline;
+}
+
+.appointform{
+  background-color: #dc3545;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+}
+
+</style>
+
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-sm-12">
+      <div class="imageslidehloder">
+
+         <% if @product.images.size >= 1 %>
             <div class="orbit" role="region" aria-label="<%=@product.name %>" data-orbit data-use-m-u-i="false">
-              <ul class="orbit-container">
-                <button class="orbit-previous"><span class="show-for-sr">Previous</span>&#9664;&#xFE0E;</button>
-                <button class="orbit-next"><span class="show-for-sr">Next</span>&#9654;&#xFE0E;</button>
+              <ul class="orbit-container" style="border: 2px solid #dc3545; border-radius: 10px;">
+                <button class="orbit-previous" style="color: #dc3545;"><span class="show-for-sr">Previous</span>&#9664;&#xFE0E;</button>
+                <button class="orbit-next" style="color: #dc3545;"><span class="show-for-sr">Next</span>&#9654;&#xFE0E;</button>
                 <% @product.images.each_with_index do |image, i|%>
                   <li class="<%= 'is-active' if i == 0 %> orbit-slide">
                     <%= image_tag(image.photo.url(:large)) %>
-                    <figcaption class="orbit-caption"><%= image.caption || @product.name %></figcaption>
+                    <figcaption class="orbit-caption" style="color: #dc3545; font-weight: 700; font-size: 15px;"><%= image.caption || @product.name %></figcaption>
                   </li>
                 <% end %>
               </ul>
@@ -46,19 +67,22 @@
           <% end %>
 
       </div>
-      <div id='right_2_product_wrapper' class='six columns large-6 last'>
-          <div id='right_product_wrapper' class=''>
-            <div class='product_title_name'>
-              <%= @product.name %>
+    </div>
+    <div class="col-lg-4 col-sm-12">
+      <div class="cartandorder">
+
+        <div class='product_title_name'>
+             <h2 style="color: #dc3545;"><%= @product.name %></h2>
             </div>
             <% if @product.active_variants.count > 0 %>
               <div class='product_content'>
                 <div class='product_content_price'>
-                  <%= number_to_currency @product.active_variants.first.price %>
+                 <span style="color: #9a9c9e; font-size: 20px; font-weight: 300; font-family: 'Asap Condensed', sans-serif;">&#162; <%= @product.active_variants.first.price %></span>
                 </div>
 
               </div>
-              <div id='your_product' class='panel'>
+
+                 <div id='your_product' class='panel'>
                 <% @product.active_variants.each_with_index do |variant, i| %>
                   <div id='variant_<%= variant.id %>'
                        class='tiny button variant_select <%= 'secondary' if i != 0 %> <%= 'selected_variant success' if i == 0 %>'
@@ -67,58 +91,69 @@
                   </div>
                 <% end %>
                   <div  class='properties_inner_wrapper ' >
-                    <hr/>
+                    <hr style="background-color: red; border: 0; height: 1px;">
                     <%= form_for  @cart_item,
                                   :url  => shopping_cart_items_path(@cart_item),
                                   :html => { :id => 'new_cart_item', :class => 'custom' } do |f| %>
                         <%= f.hidden_field :variant_id %>
                         <div class='four'>
-                        Quantity:
-                        <%= f.select :quantity, [1,2,3,4], { include_blank: false }, { class: ' ' } %>
+                        <span style="olor: #9a9c9e; font-size: 12px; font-weight: 300; font-family: 'Asap Condensed', sans-serif;">Quantity:</span>
+                        <%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10], { include_blank: false }, { class: ' ' } %>
                         </div>
                         <div class='add_to_cart_wrapper '>
                           <% unless @product.active_variants.empty? %>
-                            <%= link_to 'Add to Cart', '#', id: 'submit_add_to_cart', class: 'small button' %>
+                            <%= link_to 'Add to Cart', '#', id: 'submit_add_to_cart', class: 'btn btn-primary', style: "margin-top: 20px; position: relative; float: right; font-size: 18px; font-weight: 500; border-radius: 0;" %>
                           <% end %>
                         </div>
                     <% end %>
                   </div>
-                  <div  class='clearfix' style='margin-bottom:20px;' >&nbsp;</div>
-              </div>
 
-              <ul id='product-tabs' class='tabs' data-tabs>
-                <li class="tabs-title is-active"><a href="#product-description" aria-selected="true">Product</a></li>
-                <li class="tabs-title"><a href="#product-properties">Properties</a></li>
-              </ul>
-              <div class="tabs-content" data-tabs-content="product-tabs">
-                <div class="tabs-panel is-active" id="product-description">
-                  <% @product.active_variants.each_with_index do |variant, i| %>
-                    <% if variant.low_stock? || variant.sold_out? %>
-                      <div  class='variant_stock variant_stock_<%= variant.id %> <%= 'is-hidden' if i != 0 %>'>
-                        <%= image_tag("ribbons/#{variant.stock_status}_upper_right.png",
-                                      :width => 63, :height => 62,
-                                      :style => 'border:none;',
-                                      :class => 'upper_right_overlay float-right'
-                                       ) %>
-                        <% if variant.sold_out? && (!current_user || !current_user.requested_to_be_notified?(variant.id)) %>
-                          <p>
-                          <% if current_user %>
-                            <%= link_to 'Notify me', notification_path(variant), data: { confirm: 'Click OK and you will get an email when this product is back in stock.' }, class: 'button tiny alert', style: 'margin-top:15px;', method: :put %> when this product is back in stock.
-                          <% else %>
-                            <%= link_to 'Notify me', '#', disabled: true, class: 'button tiny disabled', style: 'margin-top:15px;' %><br/>
-                            Login to be notified when this product is back in stock.
-                          <% end %>
-                          </p>
-                        <% elsif variant.sold_out? && (current_user && current_user.requested_to_be_notified?(variant.id)) %>
-                          <p class='alert callout'><em>You will be notified when this product is back in stock.</em></p>
-                        <% end %>
-                      </div>
-                    <% end %>
-                  <% end %>
-                  <div><%= raw @product.description %></div>
-                </div>
-                <div class="tabs-panel" id="product-properties">
-                  <% @product.active_variants.each_with_index do |var, i| %>
+              <% end %>
+            <div id="share-buttons" style="">
+     <!-- Facebook -->
+    <a href="http://www.facebook.com/sharer.php?u=" target="_blank">
+        <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
+    </a>
+    
+    <!-- Google+ -->
+    <a href="https://plus.google.com/share?url=" target="_blank">
+        <img src="https://simplesharebuttons.com/images/somacro/google.png" alt="Google" />
+    </a>
+    
+    <!-- LinkedIn -->
+    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=" target="_blank">
+        <img src="https://simplesharebuttons.com/images/somacro/linkedin.png" alt="LinkedIn" />
+    </a>
+    
+    <!-- Print -->
+    <a href="javascript:;" onclick="window.print()">
+        <img src="https://simplesharebuttons.com/images/somacro/print.png" alt="Print" />
+    </a>
+     
+    <!-- Twitter -->
+    <a href="https://twitter.com/share?url&amp;text=&amp;hashtags=SyriatexGhana" target="_blank">
+        <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
+    </a>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h4 style="color: #dc3545; text-align: center; margin-top: 30px; margin-bottom: 40px;">Product Details</h4>
+  <div class="row">
+    <div class="col-lg-6 col-sm-12">
+      <div class="holditemdetails">
+        <p style="font-weight: 500;">Details</p>
+        <%= raw @product.description %>
+
+      </div>
+    </div>
+    <div class="col-lg-6 col-sm-12">
+      <div class="holditemdetails">
+        <p style="font-weight: 500;">Specifications</p>
+         <% @product.active_variants.each_with_index do |var, i| %>
                     <div id='variant_properties_<%= var.id %>' class='variant_properties <%= 'is-hidden' if i != 0 %>'>
                       <% if var.low_stock? || var.sold_out? %>
                         <div class='variant_stock variant_stock_<%= var.id %> <%= 'is-hidden' if i != 0 %>'>
@@ -150,20 +185,59 @@
                 </div>
               </div>
 
-            <% end %>
-            </div>
-          </div>
-      </div>
+           
 
-    <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br><br>
+<h5 style="color: #dc3545; text-align: left;margin-left: 100px; margin-top: 30px; margin-bottom: 15px;">Showroom Location</h5>
+<div class="container">
+<div class="row">
+  <div class="col-lg-9">
+    <div class="holdlocator">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.9880328930303!2d-0.17028768606337708!3d5.568785635071264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9aa2763708f1%3A0xaf41e9d719bf8601!2sSyriatex+Gh.+Ltd.!5e0!3m2!1sen!2sgh!4v1516921407344" width="100%" height="450" frameborder="0" style="border: 2px solid #dc3545; border-radius: 10px;" allowfullscreen></iframe>
+</div>
+</div>
+<div class="col-lg-3 col-sm-12">
+  <div class="appointform">
+     <h6>Visit us in our Showroom!</h6>
+     <div class="form-group">
+    <label for="lead_name">Name</label>
+    <input id="lead_name" class="form-control" placeholder="Your name" required="required" type="text" name="lead[name]" />
   </div>
 
+  <div class="form-group">
+    <label for="lead_phone">Phone number</label>
+    <input id="lead_phone" class="form-control" placeholder="Your phone number" required="required" type="text" name="lead[phone]" />
+  </div>
+
+    <div class="form-group">
+      <label>Visit date</label>
+                <div class='input-group date' id='datetimepicker1'>
+                    
+    <input id="lead_timeappoint" class="form-control" type="date" required="required" name="lead[timeappoint]" />
+                    <span class="input-group-addon">
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                    </span>
+                </div>
+            </div>
+
+  <div class="form-group">
+   <label>Do you want to know something?</label>
+    <textarea id="lead_message" class="form-control" placeholder="Your message for us" name="lead[message]">
+</textarea>
+  </div>
+  <p style="text-align: right;"><a href="" class="btn btn-primary" style="background-color: #ffffff; border: 0; color: #dc3545; font-size: 12px;">Submit</a></p>
+  </div>
 </div>
-&nbsp;<div class='clearfix' style='height:50px;'>&nbsp</div>
 </div>
-<div id='generic-dialog'></div>
+</div>
+
 
 <% content_for :below_body do -%>
   <%= javascript_include_tag 'shopping/cart.js' %>
   <%= javascript_include_tag 'product_page.js' %>
 <% end %>
+

@@ -1,13 +1,313 @@
+
+
+
+
 <% content_for :head do -%>
   <%= stylesheet_link_tag 'home_page.css' %>
 <% end %>
 
 
-<div id='left_side_panel' class='span-6 last'>
-&nbsp;
-</div>
 
-<div id='featured_item' class='span-18 last'>
-  <%= image_tag 'home.png' %>
-</div>
+<style type="text/css">
+  
 
+.carousel-inner {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.carousel-caption {
+  position: absolute;
+  right: 15%;
+  bottom: 250px;
+  left: 15%;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.aboutsyriatex{
+  padding: 50px;
+  background: #dc3545;
+}
+
+zoomin img {
+  height: 110px;
+  width: 110px;
+  -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+          transition: all 1s ease;
+}
+
+.zoomin img:hover {
+  width: 180px;
+  height: 180px;
+}
+
+.image-box{
+  width:100%;
+  overflow:hidden;
+}
+.image {
+  width:100%;
+  height:400px;
+  margin-bottom: 30px;
+  background:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.1)),url(https://res.cloudinary.com/nikasemo/image/upload/v1513615312/curtains_vb2sau.jpg);
+  background-position:center;
+  transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -o-transition: all 1s ease;
+} 
+.image:hover {
+  transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  -ms-transform: scale(1.2); /* IE 9 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=1.5, M12=0, M21=0, M22=1.5, SizingMethod='auto expand')"; /* IE8 */
+   filter: progid:DXImageTransform.Microsoft.Matrix(M11=1.5, M12=0, M21=0, M22=1.5, SizingMethod='auto expand'); /* IE6 and 7 */ 
+} 
+
+.image1 {
+  width:100%;
+  height:400px;
+  margin-bottom: 30px;
+  background:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.1)),url(http://res.cloudinary.com/nikasemo/image/upload/v1513615309/curtainacesories_qxyusi.jpg);
+  background-position:center;
+  transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -o-transition: all 1s ease;
+} 
+.image1:hover {
+  transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  -ms-transform: scale(1.2); /* IE 9 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=1.5, M12=0, M21=0, M22=1.5, SizingMethod='auto expand')"; /* IE8 */
+   filter: progid:DXImageTransform.Microsoft.Matrix(M11=1.5, M12=0, M21=0, M22=1.5, SizingMethod='auto expand'); /* IE6 and 7 */ 
+} 
+
+.image2 {
+  width:100%;
+  height:400px;
+  margin-bottom: 30px;
+  background:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.1)),url(http://res.cloudinary.com/nikasemo/image/upload/v1513615560/bedsheetbeds_stwjtq.jpg);
+  background-position:center;
+  transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -o-transition: all 1s ease;
+} 
+.image2:hover {
+  transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  -ms-transform: scale(1.2); /* IE 9 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=1.5, M12=0, M21=0, M22=1.5, SizingMethod='auto expand')"; /* IE8 */
+   filter: progid:DXImageTransform.Microsoft.Matrix(M11=1.5, M12=0, M21=0, M22=1.5, SizingMethod='auto expand'); /* IE6 and 7 */ 
+} 
+
+.image3 {
+  width:100%;
+  height:400px;
+  margin-bottom: 30px;
+  background:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.1)),url(https://res.cloudinary.com/nikasemo/image/upload/v1513615309/royalfurrniture_tfsgsk.jpg);
+  background-position:center;
+  transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -o-transition: all 1s ease;
+} 
+.image3:hover {
+  transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  -ms-transform: scale(1.2); /* IE 9 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=1.5, M12=0, M21=0, M22=1.5, SizingMethod='auto expand')"; /* IE8 */
+   filter: progid:DXImageTransform.Microsoft.Matrix(M11=1.5, M12=0, M21=0, M22=1.5, SizingMethod='auto expand'); /* IE6 and 7 */ 
+} 
+
+.image4 {
+  width:100%;
+  height:400px;
+  margin-bottom: 30px;
+  background:linear-gradient(0deg,rgba(0,0,0,0.5),rgba(0,0,0,0.1)),url(https://res.cloudinary.com/nikasemo/image/upload/v1513618496/kitchcabi_mj8vid.jpg);
+  background-position:center;
+  transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -o-transition: all 1s ease;
+} 
+.image4:hover {
+  transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  -ms-transform: scale(1.2); /* IE 9 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=1.5, M12=0, M21=0, M22=1.5, SizingMethod='auto expand')"; /* IE8 */
+   filter: progid:DXImageTransform.Microsoft.Matrix(M11=1.5, M12=0, M21=0, M22=1.5, SizingMethod='auto expand'); /* IE6 and 7 */ 
+} 
+
+.housedescribe{
+  text-align: center;
+}
+
+.housedescribe a{
+  text-align: center; 
+  position:relative; 
+  top: 200px;
+  font-size: 18px;
+  color: white;
+  font-family: 'Asap Condensed', sans-serif; 
+  letter-spacing: 2px;
+}
+
+hr.worksdivider{
+  height: 2px;
+  background-color: #dc3545;
+  border: 0px solid;
+  width: 15%;
+}
+
+
+
+
+</style>
+
+
+
+ <header>
+
+ 
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          <!-- Slide One - Set the background image for this slide in the line below -->
+          <div class="carousel-item active" style="background-image: url('https://res.cloudinary.com/nikasemo/image/upload/v1513553353/curt222_racv1p.jpg')">
+            <div class="carousel-caption d-md-block">
+              <h3 class="capttxt">A Serene environment that breeds Success.</h3>
+              <hr class="worksdivider">
+              <p style="font-family: 'Asap Condensed', sans-serif; letter-spacing: 2px; text-shadow: 0px 4px 7px rgba(150, 150, 150, 0.65);">Located in the fauna rich area in Kumasi, this natural environment provides Sereneness for growth and mindless relaxation.</p>
+            </div>
+          </div>
+          <!-- Slide Two - Set the background image for this slide in the line below -->
+           <div class="carousel-item" style="background-image: url('https://res.cloudinary.com/nikasemo/image/upload/v1513553354/royalo_tvo5ie.jpg')">
+            <div class="carousel-caption d-md-block">
+              <h3 class="capttxt" style="">British Housing style brought to Ghana.</h3>
+              <hr class="worksdivider">
+              <p style="font-family: 'Asap Condensed', sans-serif; letter-spacing: 2px; text-shadow: 0px 4px 7px rgba(150, 150, 150, 0.65);">Our Houses are equipped with the most modern facilities that will make you and your kids want more of home.</p>
+            </div>
+          </div>
+          <!-- Slide Three - Set the background image for this slide in the line below -->
+           <div class="carousel-item" style="background-image: url('https://res.cloudinary.com/nikasemo/image/upload/v1513553358/exotichomeexp_dycdo5.jpg')">
+            <div class="carousel-caption d-md-block">
+              <h3 class="capttxt">Provide a Home to raise your Kids</h3>
+              <hr class="worksdivider">
+              <p style="font-family: 'Asap Condensed', sans-serif; letter-spacing: 2px; text-shadow: 0px 4px 7px rgba(150, 150, 150, 0.65);">Houses at Wehnuem are furnished with state of the art facilities that will ensure your family enjoys proper treatment while growing in wisdom.</p>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </header>
+
+    
+    <section class="py-5 aboutsyriatex">
+      <div class="container">
+        <h1 style="font-family: 'Poppins', sans-serif; text-align: center; color: white;" class="js-reveal">
+          About Syriatex Ghana</h1>
+        <hr class="worksdivider">
+        <div class ="row">
+          <div class="col-sm-12">
+           <p style="font-weight: 300; font-size: 16px; text-align: center; color: white;" class="js-reveal">
+           Syriatex Ghana was founded on 1st August 2001. For fifteen years , Syriatex Ghana has stayed commited to bringing Ghanaians the best of home and office furnishing. We are commited to our mission. From curtains, we have enlarged our product base. You can rely on us for the best and quality blinds, beds, bedsheets, curtain acessories, rolling shutters, home & office furniture and a whole lot of stuff you would love. We love what we do and we make sure we do it with absolute tact and excellence. We always make sure we deliver on time and also make sure 
+           installation is done excellently. 
+           </p><br>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="js-reveal" style="padding: 20px; background-color: #ffffff">
+      <br>
+  <h3 style="font-family: 'Poppins', sans-serif; text-align: center; color: #dc3545;" class="js-reveal">Explore Products at Syriatex ghana.</h3>
+  <hr class="worksdivider">
+  <p style="font-family: 'Poppins', sans-serif; text-align: center; color: #dc3545;">You can rely on us for the best and quality blinds, beds, bedsheets, curtain acessories, rolling shutters</p>
+  <br>
+      <div class="row">
+      <div class="col-sm-6 zoomimgbg1">
+       <div class="image-box">
+  <div class="image">
+    <h3 class="housedescribe">
+    <a href="/twobedroom" style="text-decoration:none;">Curtains and Blinds</a>
+    </h3>
+  </div>
+</div>
+      </div>
+      <div class="col-sm-6 zoomimgbg2">
+       <div class="image-box">
+  <div class="image1">
+    <h3 class="housedescribe" style="">
+    <a href="/threebedroom" style="text-decoration:none;">Curtain Accesories</a>
+    </h3>
+  </div>
+</div>
+      </div>
+      <div class="col-sm-4 zoomimgbg3">
+       <div class="image-box">
+  <div class="image2">
+    <h3 class="housedescribe" style="">
+    <a href="/fourbedroom" style="text-decoration:none;">Beds and Bedsheets</a>
+    </h3>
+  </div>
+</div>
+</div>
+<div class="col-sm-4 zoomimgbg3">
+       <div class="image-box">
+  <div class="image3">
+    <h3 class="housedescribe" style="">
+    <a href="/fourbedroom" style="text-decoration:none;">Furniture</a>
+    </h3>
+  </div>
+</div>
+</div>
+<div class="col-sm-4 zoomimgbg3">
+       <div class="image-box">
+  <div class="image4">
+    <h3 class="housedescribe" style="">
+    <a href="/fourbedroom" style="text-decoration:none;">Kitchen Cabinet</a>
+    </h3>
+  </div>
+</div>
+</div>
+</div>
+      </div>
+     </section>
+
+  

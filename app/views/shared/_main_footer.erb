@@ -1,17 +1,60 @@
-<%
-loop_footer_tabs = {
-  'Terms & Conditions'  => terms_path,
-  'About'               => about_path#,
-  #'Customer Service'    => faq_customer_service_path
-}
-%>
 
-<div id="footer_wrapper" class='row'>
-  <div  class='nine large-9 columns'>
-    <ul id='main-footer-tabs' class='menu '>
-      <% loop_footer_tabs.each_pair do |tab_name, tab_path| %>
-        <li> <%= link_to_unless_current tab_name, tab_path %> </li>
-      <% end %>
-    </ul>
-  </div>
-</div>
+
+ <footer class="py-5" style="background-color: #dc3545;">
+      <div class="container">
+        <div class="row">
+        <div class="col-lg-3">
+          <div class="innerfooter">
+            <h5 class="foothead">About Us</h5>
+            <ul style="list-style:none; padding-left:0;">
+            <li><a href="" style="color: white; font-weight: 300; font-size: 14px; text-decoration:none;">Home</a></li>
+            <li><a href="" style="color: white; font-weight: 300; font-size: 14px; text-decoration:none;">About us</a></li>
+            <li><a href="" style="color: white; font-weight: 300; font-size: 14px; text-decoration:none;">Contact Us</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="innerfooter">
+            <h5 class="foothead">Top Products</h5>
+            <ul style="list-style:none; padding-left:0;">
+            <li><a href="" style="color: white; font-weight: 300; font-size: 14px; text-decoration:none;">Curtains and Blinds</a></li>
+            <li><a href="" style="color: white; font-weight: 300; font-size: 14px; text-decoration:none;">Curtain Accesories</a></li>
+            <li><a href="" style="color: white; font-weight: 300; font-size: 14px; text-decoration:none;">Beds and bedsheets</a></li>
+            <li><a href="" style="color: white; font-weight: 300; font-size: 14px; text-decoration:none;">Furniture</a></li>
+            <li><a href="" style="color: white; font-weight: 300; font-size: 14px; text-decoration:none;">Kitchen Cabinet</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="innerfooter">
+            <h5 class="foothead">Support</h5>
+            <ul style="list-style:none; padding-left:0;">
+            <li><a href="" style="color: white; font-weight: 300; font-size: 14px; text-decoration:none;">Contact Us</a></li>
+            <li><a href="" style="color: white; font-weight: 300; font-size: 14px; text-decoration:none;">FAQ's</a></li>
+            <li><a href="" style="color: white; font-weight: 300; font-size: 14px; text-decoration:none;">Terms and Conditions</a></li>
+            <li><a href="/users/sign_in" style="color: white; font-weight: 300; font-size: 14px; text-decoration:none;">Admin</a>
+            </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="innerfooter">
+             <h5 class="foothead">Visit Our Social Media</h5>
+             <span><a href=""><i class="fa fa-facebook-official fa-2x" style="color: white; margin-right: 5px;" aria-hidden="true"></i></a></span>
+             <span><a href=""><i class="fa fa-twitter-square fa-2x" style="color: white; margin-right: 5px;" aria-hidden="true"></i></a></span>
+             <span><a href=""><i class="fa fa-instagram fa-2x" style="color: white; margin-right: 5px;" aria-hidden="true"></i></a></span>
+             <span><a href=""><i class="fa fa-google-plus-square fa-2x" style="color: white; margin-right: 5px;" aria-hidden="true"></i></a></span>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 30px;">
+        <div class="col-sm-12">
+        <p class="m-0 text-center text-white">Copyright &copy; Syriatex Ghana, 2018</p>
+      </div>
+    </div>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+

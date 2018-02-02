@@ -35,3 +35,5 @@ Rails.application.config.assets.precompile += [ 'admin.css',
                                                 'scaffold.css', # in vendor
                                                 'vendor/modernizr.js'
                                                 ]
+Rails.application.config.assets.precompile += %w( bootstrap.css )
+Rails.application.config.assets.precompile += %w( full-slider.css )                                                

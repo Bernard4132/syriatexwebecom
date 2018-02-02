@@ -32,10 +32,6 @@ class Shopping::OrdersController < Shopping::BaseController
     @order = find_or_create_order
     @order.ip_address = request.remote_ip
 
-    @credit_card ||= ActiveMerchant::Billing::CreditCard.new(cc_params)
-
-    address = @order.bill_address.cc_params
-
     if !session_cart.shopping_cart_items_equal_order_items?(@order)
       flash[:alert] = I18n.t('shopping_cart_items_do_not_match_order_items')
       redirect_to shopping_cart_items_url
@@ -44,28 +40,16 @@ class Shopping::OrdersController < Shopping::BaseController
       session[:order_id] = nil
       flash[:error] = I18n.t('the_order_purchased')
       redirect_to myaccount_order_url(@order)
-    elsif @credit_card.valid?
-      if response = @order.create_invoice(@credit_card,
-                                          @order.credited_total,
-                                          { email: @order.email, billing_address: address, ip: @order.ip_address },
-                                          @order.amount_to_credit)
-        if response.succeeded?
-          expire_all_browser_cache
+    elsif @order.valid?
+       @order.user = current_user
+      expire_all_browser_cache
           ##  MARK items as purchased
           session_cart.mark_items_purchased(@order)
           session[:last_order] = @order.number
-          redirect_to( confirmation_shopping_order_url(@order) ) and return
-        else
-          flash[:alert] =  [I18n.t('could_not_process'), I18n.t('the_order')].join(' ')
-        end
-      else
-        flash[:alert] = [I18n.t('could_not_process'), I18n.t('the_credit_card')].join(' ')
-      end
-      form_info
-      render :action => 'index'
+          redirect_to( confirmation_shopping_order_url(@order) )
     else
       form_info
-      flash[:alert] = [I18n.t('credit_card'), I18n.t('is_not_valid')].join(' ')
+      flash[:alert] = "Order could not be processed"
       render :action => 'index'
     end
   end

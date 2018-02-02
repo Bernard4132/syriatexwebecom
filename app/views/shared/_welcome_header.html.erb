@@ -1,95 +1,533 @@
-<div class="top-bar">
-  <div class="top-bar-left">
+    <style type="text/css">
+      
+      a {
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
 
-    <ul class="dropdown menu" data-dropdown-menu>
-      <!-- Title Area -->
-      <li class="menu-text">
-        <h1 class="menu-text">
-          <%= link_to site_name, root_path %>
-        </h1>
-      </li>
+a:hover {
+  text-decoration: none;
+}
 
-      <li class="divider"></li>
-      <li class="">
-        <%= link_to 'Products', products_path, class: 'active' %>
-        <ul class="menu vertical">
-          <%- if nil # This is how you add a dropdown that slides to the right %>
-            <li class="">
-              <a href="#" >Level 1 &rarr;</a>
-              <ul class="menu">
-                <li><a href="#">Add Link here</a></li>
-                <li><a href="#">Add Link 2 here</a></li>
-              </ul>
-            </li>
-          <%- end -%>
-          <% product_types.each do |pt_tab| %>
-            <li> <%= link_to pt_tab.name.capitalize, products_path(:product_type_id => pt_tab.id) %> </li>
-          <%- end -%>
-          <li class="divider"></li>
-          <li>
-            <%= link_to 'All Products', products_path %>
-          </li>
-        </ul>
-      </li>
-      <li class="divider hide-for-small"></li>
-    </ul>
-  </div>
-  <div class="top-bar-right">
-    <!-- Right Nav Section -->
-    <ul class="dropdown menu" data-dropdown-menu>
-      <li class="divider show-for-medium-and-up"></li>
-      <li class="">
-        <%= link_to( 'Your Cart', shopping_cart_items_path) %>
-        <ul class="menu vertical">
 
-          <% if session_cart.shopping_cart_items.size > 0 %>
-            <li>
-            <%= link_to(shopping_cart_items_path, :id => 'cart_items_buttons') do %>
-               <strong> Items </strong>
-            <% end %>
-            </li>
-            <li class="divider"></li>
-            <% session_cart.shopping_cart_items.each do |item| %>
-              <li>
-                <%= link_to(shopping_cart_items_path, :id => 'cart_items_buttons') do %>
-                   <%= item.name %>
-                <% end %>
-              </li>
-            <% end %>
-          <% else %>
-            <li class="divider"></li>
-            <li>
-              <%= link_to( 'Your cart is Empty!', shopping_cart_items_path) %>
-            </li>
-          <% end %>
-        </ul>
-      </li>
-      <li class="">
+  .navbackground{
+     background-color: #ffffff;
+     border-top: 1px solid #f2f2f2;
+     -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.2);
+-moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.2);
+box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.2);
+  }
+
+
+
+.navbar-brand1 {
+  display: inline-block;
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  line-height: inherit;
+  white-space: nowrap;
+}
+
+
+
+
+.navbar-light .navbar-brand1{
+color: #dc3545; 
+font-weight: 700;
+font-family: 'Poppins', sans-serif;
+}
+
+.navbar-scroll{
+color: #000; 
+font-weight: 700;
+font-family: 'Poppins', sans-serif;
+}
+
+.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+  color: white;
+}
+
+.navbar-light .navbar-scroll:focus, .navbar-light .navbar-scroll:hover {
+  color: #343a40;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #dc3545;
+  font-weight: 300;
+  font-family: 'Asap Condensed', sans-serif;
+  transition: border-color .5s ease-in-out;
+    -webkit-transition: border-color .5s ease-in-out;
+    -moz-transition: border-color .5s ease-in-out;
+  border-bottom: 4px solid transparent;
+}
+
+.navlinkscroll{
+  color: #343a40;
+  
+}
+
+.navbar-light .navbar-nav .nav-link:focus {
+  color: #dc3545;
+  font-weight: 700;
+  border-bottom-color:#dc3545;
+}
+
+ .navbar-light .navbar-nav .nav-link:hover {
+  color: #dc3545;
+  font-weight: 700;
+  border-bottom-color: #dc3545;
+}
+
+.navbar-light .navbar-nav .nav-link.disabled {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.navbar-light .navbar-nav .show > .nav-link,
+.navbar-light .navbar-nav .active > .nav-link,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .nav-link.active {
+  color: #dc3545;
+  font-weight: 500;
+  border-bottom: 4px solid #dc3545;
+  
+}
+
+.holdformsi{
+  padding: 50px;
+}
+
+.capttxt{
+  color: #dc3545;
+  font-size: 35px;
+  font-weight: 400;
+  text-shadow: 0px 4px 7px rgba(150, 150, 150, 0.35);
+  font-family: 'Bungee', cursive;
+}
+
+.innerctact{
+  background-color: #ddd;
+  border: 1px solid #b3b3b3;
+  border-radius: 5px;
+  min-height: 200px;
+  padding: 5px;
+}
+
+.innerctact:hover{
+-webkit-box-shadow: 0px 0px 35px -5px rgba(0,0,0,0.7);
+-moz-box-shadow: 0px 0px 35px -5px rgba(0,0,0,0.7);
+box-shadow: 0px 0px 35px -5px rgba(0,0,0,0.7);
+}
+
+.foothead{
+  color: white;
+  font-family: 'Asap Condensed', sans-serif; 
+}
+
+.js-reveal {
+  opacity: 1;
+  transition: opacity .7s ease-in, margin-top .7s ease-out;
+}
+
+.js-reveal--hidden {
+  opacity: 0;
+  margin-top: 3em;
+}
+
+.tophinfo{
+    font-weight: 300;
+    font-size: 14px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.tophinfor{
+    font-weight: 300;
+    font-size: 14px;
+    color: #ffffff;
+    text-align: right;
+}
+
+.holdtopnaver{
+    padding: 3px;
+    text-align: center;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ffffff;
+  border-radius: 0rem;
+  -webkit-box-shadow: 0px 1px 5px 4px rgba(0,0,0,0.14);
+-moz-box-shadow: 0px 1px 5px 4px rgba(0,0,0,0.14);
+box-shadow: 0px 1px 5px 4px rgba(0,0,0,0.14);
+}
+
+.dropdown-divider {
+  height: 0;
+  margin: 0.5rem 0;
+  overflow: hidden;
+  border-top: 1px solid #e9ecef;
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: normal;
+  color: #dc3545;
+  text-align: inherit;
+  white-space: nowrap;
+  background: none;
+  border: 0;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #dc3545;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: #dc3545;
+}
+
+.dropdown-item.disabled, .dropdown-item:disabled {
+  color: #dc3545;
+  background-color: transparent;
+}
+
+.foothead{
+  color: white;
+  font-family: 'Asap Condensed', sans-serif; 
+}
+
+.dropbtn1 {
+    
+    border: none;
+}
+
+.dropdown1 {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content1 {
+    display: none;
+    position: absolute;
+    right: -10px;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content1 a {
+    color: #dc3545;
+    padding: 12px 16px;
+    font-size: 12px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content1 a:hover {background-color: #f1f1f1}
+
+.dropdown1:hover .dropdown-content1 {
+    display: block;
+
+}
+
+.dropdown1:hover .dropbtn1 {
+    background-color: transparent;
+}
+
+.dropbtn2 {
+    
+    border: none;
+}
+
+.dropdown2 {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content2 {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content2 a {
+    color: #dc3545;
+    font-size: 12px;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content2 a:hover {background-color: #f1f1f1}
+
+.dropdown2:hover .dropdown-content2 {
+    display: block;
+}
+
+.dropdown2:hover .dropbtn2 {
+    background-color: transparent;
+}
+
+.dropbtn3 {
+    
+    
+    border: none;
+}
+
+.dropdown3 {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content3 {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content3 a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content3 a:hover {background-color: #f1f1f1}
+
+.dropdown3:hover .dropdown-content3 {
+    display: block;
+}
+
+.dropdown3:hover .dropbtn3 {
+    background-color: transparent;
+}
+
+@media only screen and (min-width : 100px) and (max-width : 600px) {
+
+  .navbar-light .navbar-brand1{
+font-size: 18px;
+font-weight: 700;
+font-family: 'Poppins', sans-serif;
+}
+
+
+.innerctact{
+  background-color: #ddd;
+  border: 1px solid #b3b3b3;
+  border-radius: 5px;
+  min-height: 200px;
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+
+}
+
+    </style>
+
+  </head>
+
+  <body>
+
+   <div style="height: 35px; width: 100%; background-color: #dc3545;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="holdtopnaver">
+                    <span class="tophinfo">
+                      <i class="fa fa-facebook-official" aria-hidden="true"></i> 
+                      <i class="fa fa-instagram" aria-hidden="true"></i>
+                      <i class="fa fa-google-plus" aria-hidden="true"></i>
+                    </span>
+                </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="holdtopnaver">
+                    <span class="tophinfo"><i class="fa fa-truck" aria-hidden="true"></i> Express Dilevery</span>
+                </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="holdtopnaver">
+                    <span class="tophinfor" style="text-align: right;"><i class="fa fa-phone" aria-hidden="true"></i> +233 302-777 977, +233 302785445</span>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height: 100px; width: 100%; background-color: #fff;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="navlogoholder my-auto mx-auto" style="position: relative; top: 40px; float: left;">
+                      <p><i class="fa fa-map-marker fa-2x" style="color: #dc3545; margin-left: 10px;" aria-hidden="true"></i> <a href="" style="font-size: 15px; font-family: 'Asap Condensed', sans-serif; color: #dc3545;">Locate our showroom</a></p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                     <br>
+                   <div id="custom-search-input">
+                            <div class="input-group col-md-12">
+                                <input type="text" class="  search-query form-control" placeholder="Search Our Products" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="button">
+                                        <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                 
+                </div>
+                <div class="col-lg-4">
+                  <br>
+                   <div class="mx-auto my-auto" style="position: relative; top: 10px; float: right;">
+                       
+                      
+
+                        <div class="dropdown3">
+                        <button class="dropbtn3"><i class="fa fa-2x fa-search" style="color: #dc3545; margin-right: 10px;" aria-hidden="true"></i></button>
+                        <!-- <div class="dropdown-content3">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                       </div> -->
+                      </div>
+                        
+                        <div class="dropdown2">
+                        <button class="dropbtn2"><i class="fa fa-2x fa-user-circle-o" style="color: #dc3545; margin-right: 10px;" aria-hidden="true"></i></button>
+                        <div class="dropdown-content2">
+                        
         <%= link_to myaccount_overview_path do %>
           Your Account
         <% end %>
-        <ul class="menu vertical">
+       
           <% unless current_user %>
-            <li><%= link_to 'Login',  login_path %></li>
+           <%= link_to 'Login',  login_path %>
           <% else %>
             <% if current_user.admin? %>
-              <li><%= link_to 'Admin', admin_users_path %></li>
+              <%= link_to 'Admin', admin_users_path %>
             <% end %>
-            <li class="divider"></li>
-            <li>
+           
               <%= link_to myaccount_overview_path do %>
                 <label>Account</label>
               <% end %>
-            </li>
-            <li><%= link_to raw('Orders &rarr;' ), myaccount_orders_path %></li>
-            <li><%= link_to 'Addresses', myaccount_addresses_path %></li>
-            <li><%= link_to 'Credit Cards', myaccount_credit_cards_path %></li>
-            <li><%= link_to 'Credits', myaccount_store_credit_path %></li>
-            <li class="divider"></li>
-            <li><%= link_to 'Log Out', logout_path, method: :delete %></li>
+           
+            <%= link_to raw('Orders &rarr;' ), myaccount_orders_path %>
+            <%= link_to 'Addresses', myaccount_addresses_path %>
+            <%= link_to 'Credit Cards', myaccount_credit_cards_path %>
+            <%= link_to 'Credits', myaccount_store_credit_path %>
+            <%= link_to 'Log Out', logout_path, method: :delete %>
           <% end %>
-        </ul>
+                       </div>
+                      </div>
+
+                        <div class="dropdown1">
+                        <button class="dropbtn1"><i class="fa fa-2x fa-shopping-cart" style="color: #dc3545;" aria-hidden="true"></i> <span style="background-color: white; border: 1px solid #dc3545; border-radius: 50%; color: #dc3545; padding: 2px; font-size: 10px; margin-left: -10px;box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.2); font-weight: 700;"><%= session_cart.shopping_cart_items.size %></span></button>
+                        <div class="dropdown-content1">
+                        <% if session_cart.shopping_cart_items.size > 0 %>
+            
+            <%= link_to(shopping_cart_items_path, :id => 'cart_items_buttons') do %>
+               <strong> Items </strong>
+            <% end %>
+            
+            
+            <% session_cart.shopping_cart_items.each do |item| %>
+             
+                <%= link_to(shopping_cart_items_path, :id => 'cart_items_buttons') do %>
+                <%= image_tag item.variant.featured_image, title: item.name, class:  'img-fluid', width: "40px", height: "40px" %>
+                 <%= item.name %>
+                <% end %>
+             
+            <% end %>
+          <% else %>
+           
+          
+              <%= link_to( 'Your cart is Empty! <i class="fa fa-meh-o" aria-hidden="true"></i>'.html_safe, shopping_cart_items_path) %>
+           
+          <% end %>
+                       </div>
+                      </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-light navbar-expand-lg navbackground">
+      <div class="container">
+        <a class="navbar-brand1" href="/" style=""><img src="https://res.cloudinary.com/nikasemo/image/upload/v1513364757/logosyria_f7gb6e.png" width="39px" style="height: 100%; margin-right:5px;">
+          <span style="position:relative; top: 0px;">Syriatex Ghana</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Curtain and Blinds
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Curtains</a>
+          <a class="dropdown-item" href="#">Blinds</a>
+          <a class="dropdown-item" href="#">Rolling Shutters</a>
+        </div>
       </li>
-    </ul>
-  </div>
-</div>
+       <li class="nav-item">
+              <a class="nav-link" href="/">Curtain Accesories</a>
+            </li>
+             <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Beds and Bedsheets
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Bedsheets</a>
+          <a class="dropdown-item" href="#">Beds</a>
+          <a class="dropdown-item" href="#">Wardrobes</a>
+        </div>
+      </li>
+             <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Furniture
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Home Furniture</a>
+          <a class="dropdown-item" href="#">Office Furniture</a>
+          <a class="dropdown-item" href="#">Royal Furniture</a>
+        </div>
+      </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/blogs">Kitchen Cabinet</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
