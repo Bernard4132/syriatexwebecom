@@ -64,8 +64,8 @@ gem 'dalli'
 
 group :production do
   # gem 'mysql2', '~> 0.4.4'
-#  gem 'pg'
-#  gem 'rails_12factor'
+ gem 'pg'
+ gem 'rails_12factor'
 end
 
 group :development do
