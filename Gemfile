@@ -62,11 +62,11 @@ gem 'will_paginate',   '~> 3.1.6'
 gem 'foundation-rails', '6.2.3.0'
 gem 'dalli' 
 
-group :production do
-  # gem 'mysql2', '~> 0.4.4'
- gem 'pg', '~> 0.20'
- gem 'rails_12factor'
-end
+# group :production do
+#   # gem 'mysql2', '~> 0.4.4'
+#  gem 'pg', '~> 0.20'
+#  gem 'rails_12factor'
+# end
 
 group :development do
   # gem 'sqlite3'

@@ -10,10 +10,10 @@ puts '
 #   go to the Gemfile and add "gem 'dalli'"
 #   bundle install
 ##  Last UNCOMMENT the next line
- #Rails.application.config.session_store ActionDispatch::Session::CacheStore, :expire_after => 30.minutes
+ Rails.application.config.session_store ActionDispatch::Session::CacheStore, :expire_after => 30.minutes
 #
 #  it is also recommended to change the cache store in config/environments/*.rb
-   config.cache_store = :dalli_store
+#   config.cache_store = :dalli_store
 
 
 # Be sure to restart your server when you modify this file.
