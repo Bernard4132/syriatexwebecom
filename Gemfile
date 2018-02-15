@@ -90,6 +90,11 @@ group :test, :development do
   gem 'database_cleaner', "~> 1.6.1"
 end
 
+group :production do
+gem 'pg', '~> 0.20'
+gem 'rails_12factor'
+end
+
 group :test do
   gem 'factory_girl',       "~> 4.5.0"
   gem 'factory_girl_rails', "~> 4.5.0"
