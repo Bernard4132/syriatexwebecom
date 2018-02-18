@@ -26,51 +26,51 @@ Hadean::Application.configure do
   # Add the fonts path
   config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
-  # Precompile additional assets
-  config.assets.precompile += %w( .svg .eot .woff .ttf )
-  config.assets.precompile += %w( *.js )
-  config.assets.precompile += [ 'admin.css',
-                                'admin/app.css',
-                                'admin/cart.css',
-                                'admin/foundation.css',
-                                'admin/normalize.css',
-                                'admin/help.css',
-                                'admin/ie.css',
-                                'autocomplete.css',
-                                'application.css',
-                                'chosen.css',
-                                'foundation.css',
-                                'foundation_and_overrides.css',
-                                'home_page.css',
-                                'ie.css',
-                                'ie6.css',
-                                'login.css',
-                                'markdown.css',
-                                'myaccount.css',
-                                'normalize.css',
-                                'pikachoose_product.css',
-                                'product_page.css',
-                                'products_page.css',
-                                'shopping_cart_page.css',
-                                'signup.css',
-                                'site/app.css',
-                                'sprite.css',
-                                'tables.css',
-                                'cupertino/jquery-ui-1.8.12.custom.css',# in vendor
-                                'modstyles.css', # in vendor
-                                'scaffold.css' # in vendor
-                                ]
+  # # Precompile additional assets
+  # config.assets.precompile += %w( .svg .eot .woff .ttf )
+  # config.assets.precompile += %w( *.js )
+  # config.assets.precompile += [ 'admin.css',
+  #                               'admin/app.css',
+  #                               'admin/cart.css',
+  #                               'admin/foundation.css',
+  #                               'admin/normalize.css',
+  #                               'admin/help.css',
+  #                               'admin/ie.css',
+  #                               'autocomplete.css',
+  #                               'application.css',
+  #                               'chosen.css',
+  #                               'foundation.css',
+  #                               'foundation_and_overrides.css',
+  #                               'home_page.css',
+  #                               'ie.css',
+  #                               'ie6.css',
+  #                               'login.css',
+  #                               'markdown.css',
+  #                               'myaccount.css',
+  #                               'normalize.css',
+  #                               'pikachoose_product.css',
+  #                               'product_page.css',
+  #                               'products_page.css',
+  #                               'shopping_cart_page.css',
+  #                               'signup.css',
+  #                               'site/app.css',
+  #                               'sprite.css',
+  #                               'tables.css',
+  #                               'cupertino/jquery-ui-1.8.12.custom.css',# in vendor
+  #                               'modstyles.css', # in vendor
+  #                               'scaffold.css' # in vendor
+  #                               ]
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  if ENV['FOG_DIRECTORY'].present?
-    config.action_controller.asset_host = "//#{ENV['FOG_DIRECTORY']}.s3.amazonaws.com"
-  end
+  # if ENV['FOG_DIRECTORY'].present?
+  #   config.action_controller.asset_host = "//#{ENV['FOG_DIRECTORY']}.s3.amazonaws.com"
+  # end
 
-  # Specifies the header that your server uses for sending files
-  config.action_dispatch.x_sendfile_header = "X-Sendfile"
+  # # Specifies the header that your server uses for sending files
+  # config.action_dispatch.x_sendfile_header = "X-Sendfile"
 
   # For nginx:
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
