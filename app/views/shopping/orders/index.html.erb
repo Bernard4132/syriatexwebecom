@@ -1,9 +1,15 @@
 <% content_for :head do -%>
   <%= stylesheet_link_tag 'tables.css' %>
 <% end %>
+
+<div class="container">
+  <div class="row dshadowrow" style="margin-top: 40px;">
+
+<h4 style="color: #dc3545; font-weight: 300;">Order Summary</h4>
+
 <div id='order-wrapper' class='twelve'>
   <div class='seven large-7 columns'>
-    <h1>Order Summary</h1>
+   
 
     <div id='order-items-summary'>
       <% i = 1 %>
@@ -85,11 +91,11 @@
                                   html:  {class: 'custom'},
                                   id:    'purchase_order') do  %>
 
-      <div class="field ">
+      <div class="field " style="display: none;">
         <%= label_tag  :name %>
       </div>
 <div class='clear'></div>
-      <div class='row'>
+      <div class='row' style="display: none;">
         <div class="field six large-6 column">
           <%= label_tag 'First' %>
            <%= text_field_tag(:first_name, @credit_card.first_name) %>
@@ -101,7 +107,7 @@
         </div>
       </div>
       <div class='clear'></div>
-      <div class='row'>
+      <div class='row' style="display: none;">
         <div class="field twelve large-8 column">
           <%= label_tag 'Number'%>
            <%= text_field_tag(:number, @credit_card.number , class: ' disableAutoComplete', :autocomplete => "off") %>
@@ -112,7 +118,7 @@
         </div>
       </div>
       <div class='twelve large-12 clearfix custom'>
-        <div class='row'>
+        <div class='row' style="display: none;">
 
           <div class="field column large-6">
             <%= label_tag :type, 'Type'%>
@@ -149,3 +155,5 @@
   </div>
 </div>
 
+</div>
+</div>

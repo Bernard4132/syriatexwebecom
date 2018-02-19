@@ -1,6 +1,10 @@
-<h1>Pick a Shipping Method</h1>
 
-<div class='clearfix'>
+<div class="container">
+  <div class="row dshadowrow" style="margin-top: 40px;">
+
+<h4 style="color: #dc3545; font-weight: 300;">Pick a Shipping Method</h4>
+
+<div class='col-lg-12'>
   <%= form_tag(shopping_shipping_method_path(session_order.id), html: {class: 'custom'}, method: :put) do -%>
 
       <% @order_items.group_by(&:shipping_category_id).each do |shipping_category_id, items| %>
@@ -30,4 +34,7 @@
     </div>
 
   <% end %>
+</div>
+
+</div>
 </div>

@@ -499,6 +499,9 @@ font-family: 'Poppins', sans-serif;
           <a class="dropdown-item" href="#">Curtains</a>
           <a class="dropdown-item" href="#">Blinds</a>
           <a class="dropdown-item" href="#">Rolling Shutters</a>
+          <% product_types.each do |pt_tab| %>
+            <%= link_to pt_tab.name.capitalize, products_path(:product_type_id => pt_tab.id), :class => "dropdown-item" %>
+          <%- end -%>
         </div>
       </li>
        <li class="nav-item">
