@@ -496,25 +496,23 @@ font-family: 'Poppins', sans-serif;
           Curtain and Blinds
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Curtains</a>
-          <a class="dropdown-item" href="#">Blinds</a>
-          <a class="dropdown-item" href="#">Rolling Shutters</a>
-          <% product_types.each do |pt_tab| %>
-            <%= link_to pt_tab.name.capitalize, products_path(:product_type_id => pt_tab.id), :class => "dropdown-item" %>
-          <%- end -%>
+          <a class="dropdown-item" href="/products?product_type_id=5">Curtains</a>
+          <a class="dropdown-item" href="/products?product_type_id=6">Blinds</a>
+          <a class="dropdown-item" href="/products?product_type_id=7">Rolling Shutters</a>
+          <a class="dropdown-item" href="/products?product_type_id=1">Test - Clothes</a>
         </div>
       </li>
        <li class="nav-item">
-              <a class="nav-link" href="/">Curtain Accesories</a>
+              <a class="nav-link" href="/products?product_type_id=8">Curtain Accesories</a>
             </li>
              <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Beds and Bedsheets
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Bedsheets</a>
-          <a class="dropdown-item" href="#">Beds</a>
-          <a class="dropdown-item" href="#">Wardrobes</a>
+          <a class="dropdown-item" href="/products?product_type_id=10">Bedsheets</a>
+          <a class="dropdown-item" href="/products?product_type_id=11">Beds</a>
+          <a class="dropdown-item" href="/products?product_type_id=12">Wardrobes</a>
         </div>
       </li>
              <li class="nav-item dropdown">
@@ -522,13 +520,13 @@ font-family: 'Poppins', sans-serif;
           Furniture
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Home Furniture</a>
-          <a class="dropdown-item" href="#">Office Furniture</a>
-          <a class="dropdown-item" href="#">Royal Furniture</a>
+          <a class="dropdown-item" href="/products?product_type_id=14">Home Furniture</a>
+          <a class="dropdown-item" href="/products?product_type_id=15">Office Furniture</a>
+          <a class="dropdown-item" href="/products?product_type_id=16">Royal Furniture</a>
         </div>
       </li>
             <li class="nav-item">
-              <a class="nav-link" href="/blogs">Kitchen Cabinet</a>
+              <a class="nav-link" href="/products?product_type_id=17">Kitchen Cabinet</a>
             </li>
           </ul>
         </div>
