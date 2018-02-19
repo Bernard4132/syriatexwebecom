@@ -333,6 +333,10 @@ box-shadow: 0px 1px 5px 4px rgba(0,0,0,0.14);
     background-color: transparent;
 }
 
+.poserthing{
+  position: relative; top: 10px; float: right;
+}
+
 @media only screen and (min-width : 100px) and (max-width : 600px) {
 
   .navbar-light .navbar-brand1{
@@ -351,6 +355,24 @@ font-family: 'Poppins', sans-serif;
   margin-bottom: 20px;
 }
 
+.poserthing{
+  position: relative; top: -30px; float: right;
+}
+
+.tophinfo{
+    font-weight: 300;
+    font-size: 14px;
+    color: #ffffff;
+    text-align: left;
+}
+
+.tophinfor{
+    font-weight: 300;
+    font-size: 14px;
+    color: #ffffff;
+    text-align: right;
+}
+
 
 }
 
@@ -363,7 +385,7 @@ font-family: 'Poppins', sans-serif;
    <div style="height: 35px; width: 100%; background-color: #dc3545;">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-sm-6">
                     <div class="holdtopnaver">
                     <span class="tophinfo">
                       <i class="fa fa-facebook-official" aria-hidden="true"></i> 
@@ -372,12 +394,12 @@ font-family: 'Poppins', sans-serif;
                     </span>
                 </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 d-none d-sm-block">
                     <div class="holdtopnaver">
                     <span class="tophinfo"><i class="fa fa-truck" aria-hidden="true"></i> Express Dilevery</span>
                 </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-sm-6">
                     <div class="holdtopnaver">
                     <span class="tophinfor" style="text-align: right;"><i class="fa fa-phone" aria-hidden="true"></i> +233 302-777 977, +233 302785445</span>
                 </div>
@@ -393,7 +415,7 @@ font-family: 'Poppins', sans-serif;
                       <p><i class="fa fa-map-marker fa-2x" style="color: #dc3545; margin-left: 10px;" aria-hidden="true"></i> <a href="" style="font-size: 15px; font-family: 'Asap Condensed', sans-serif; color: #dc3545;">Locate our showroom</a></p>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 d-none d-sm-block">
                      <br>
                    <div id="custom-search-input">
                             <div class="input-group col-md-12">
@@ -409,7 +431,7 @@ font-family: 'Poppins', sans-serif;
                 </div>
                 <div class="col-lg-4">
                   <br>
-                   <div class="mx-auto my-auto" style="position: relative; top: 10px; float: right;">
+                   <div class="mx-auto my-auto poserthing" style="">
                        
                       
 
@@ -456,7 +478,7 @@ font-family: 'Poppins', sans-serif;
                         <% if session_cart.shopping_cart_items.size > 0 %>
             
             <%= link_to(shopping_cart_items_path, :id => 'cart_items_buttons') do %>
-               <strong> Items </strong>
+               <strong>View cart items </strong>
             <% end %>
             
             
